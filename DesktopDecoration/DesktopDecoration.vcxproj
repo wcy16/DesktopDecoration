@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedShapedFrame.h" />
+    <ClInclude Include="ChristmasTree.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="MovingShapedFrame.h" />
     <ClInclude Include="ShapedFrame.h" />
@@ -27,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedShapedFrame.cpp" />
+    <ClCompile Include="ChristmasTree.cpp" />
     <ClCompile Include="config.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MovingShapedFrame.cpp" />

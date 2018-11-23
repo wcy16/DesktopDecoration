@@ -9,14 +9,14 @@
 #include <random> // std::default_random_engine
 #include <chrono> // std::chrono::system_clock
 
-AnimatedShapedFrame::AnimatedShapedFrame(wxWindow* parent, wxString shape_path)
+AnimatedShapedFrame::AnimatedShapedFrame(wxWindow* parent, wxString gif_path, wxColor background, wxString shape_path)
 	: MovingShapedFrame(parent, shape_path)
 {
 	//m_bmp = wxBitmap(wxT("trans.gif"), wxBITMAP_TYPE_GIF);
-	TransparentAnimationCtrl* m_animationCtrl = new TransparentAnimationCtrl(this);
+	TransparentAnimationCtrl* m_animationCtrl = new TransparentAnimationCtrl(this, background);
 	//m_animationCtrl->Bind(wxEVT_RIGHT_UP, &ShapedFrame::OnExit, this);
 	MouseBind(m_animationCtrl);
-	if (m_animationCtrl->LoadFile(wxT("res/tenor.gif"))) {
+	if (m_animationCtrl->LoadFile(gif_path)) {
 		m_animationCtrl->Play();
 	}
 	

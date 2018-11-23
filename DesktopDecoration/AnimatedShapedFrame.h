@@ -7,7 +7,10 @@
 class AnimatedShapedFrame : public MovingShapedFrame
 {
 public:
-	AnimatedShapedFrame(wxWindow* parent, wxString shape_path = global_params["ANIMATED_SHAPED_FRAME_DEFAULT_PIC"]);
+	AnimatedShapedFrame(wxWindow* parent, 
+		wxString gif_path= global_params["ANIMATED_SHAPED_FRAME_DEFAULT_GIF"],
+		wxColor background = wxColor(252, 254, 252),
+		wxString shape_path = global_params["ANIMATED_SHAPED_FRAME_DEFAULT_PIC"]);
 
 	//virtual void DoubleClick();
 
@@ -17,7 +20,7 @@ private:
 class TransparentAnimationCtrl : public wxAnimationCtrl
 {
 public:
-	TransparentAnimationCtrl(AnimatedShapedFrame* parent) : wxAnimationCtrl(parent, -1)
+	TransparentAnimationCtrl(AnimatedShapedFrame* parent, wxColor background) : wxAnimationCtrl(parent, -1)
 	{
 		Connect(wxEVT_PAINT, wxPaintEventHandler(TransparentAnimationCtrl::OnPaint));
 		Connect(wxEVT_TIMER, wxTimerEventHandler(TransparentAnimationCtrl::OnTimer));
@@ -25,6 +28,7 @@ public:
 		
 		this->parent = parent;
 		//m_timer.SetOwner(this);
+		bg = background;
 	}
 
 	void OnPaint(wxPaintEvent& event)
@@ -37,13 +41,14 @@ public:
 	void OnTimer(wxTimerEvent& event) {
 		wxAnimationCtrl::OnTimer(event);
 		//parent->SetShape(wxRegion(m_backingStore, wxColor(171, 171, 171)));
-		parent->SetShape(wxRegion(m_backingStore, wxColor(252, 254, 252)));
+		parent->SetShape(wxRegion(m_backingStore, bg));
 		//wxMessageDialog * dial = new wxMessageDialog(NULL, _T("ShapedFrame double click"), _T("ShapedFrame"), wxOK);
 		//dial->ShowModal();
 		//parent->Refresh();
 	}
 private:
 	wxFrame * parent;
+	wxColor bg;   // background
 };
 
 

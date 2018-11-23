@@ -2,6 +2,7 @@
 #include "MovingShapedFrame.h"
 #include "AnimatedShapedFrame.h"
 #include "textFrame.h"
+#include "ChristmasTree.h"
 
 class Decorate : public wxApp
 {
@@ -25,7 +26,8 @@ bool Decorate::OnInit()
 	//CustomShapedFrame* d = new CustomShapedFrame(NULL);
 	//d->Show();
 	
-	auto t = new AnimatedShapedFrame(NULL);
+	//auto t = new AnimatedShapedFrame(NULL, "res/christmas.gif");
+	auto t = new ChristmasTree(NULL);
 	t->Show();
 
 	wxFont f = wxFont(_T("0;-80;0;0;0;700;0;0;0;134;3;2;1;34;Î¢ÈíÑÅºÚ"));

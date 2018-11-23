@@ -7,6 +7,7 @@ void default_cfg() {
 	global_params["DECORATE_DEFAULT_PIC"] = wxT("res/shape.png");
 	global_params["MOVING_SHAPED_FRAME_DEFAULT_PIC"] = wxT("res/shape.png");
 	global_params["ANIMATED_SHAPED_FRAME_DEFAULT_PIC"] = wxT("res/minshape.png");
+	global_params["ANIMATED_SHAPED_FRAME_DEFAULT_GIF"] = wxT("res/default.gif");
 	global_params["FRAME_POSITION_X"] = "100";
 	global_params["FRAME_POSITION_Y"] = "100";
 }
