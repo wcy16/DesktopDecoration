@@ -24,6 +24,7 @@ public:
 	void OnPaint(wxPaintEvent& evt);
 
 	virtual void DoubleClick();
+	virtual void LeftClick();
 
 	void AdjustBmp();
 
@@ -33,6 +34,7 @@ protected:
 
 private:
 	wxPoint  m_delta;
+	bool is_leftclick;   // judge if left is clicked
 
 	// do modification to the bitmap
 	bool modification=false;

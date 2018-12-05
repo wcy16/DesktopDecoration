@@ -40,6 +40,8 @@ ShapedFrame::ShapedFrame(wxString shape_path, wxWindow *parent, wxPoint pos)
 	SetWindowShape();
 	//Show();
 	//Center();
+
+	is_leftclick = false;
 }
 
 void ShapedFrame::SetWindowShape()
@@ -56,10 +58,11 @@ void ShapedFrame::OnLeftDown(wxMouseEvent& evt)
 {
 	CaptureMouse();
 	wxPoint pos = ClientToScreen(evt.GetPosition());
-	wxPoint origin = GetPosition();
+	wxPoint origin = GetPosition();    // get the window's position
 	int dx = pos.x - origin.x;
 	int dy = pos.y - origin.y;
 	m_delta = wxPoint(dx, dy);
+	is_leftclick = true;
 }
 
 void ShapedFrame::OnMouseMove(wxMouseEvent& evt)
@@ -68,7 +71,10 @@ void ShapedFrame::OnMouseMove(wxMouseEvent& evt)
 	if (evt.Dragging() && evt.LeftIsDown())
 	{
 		wxPoint pos = ClientToScreen(pt);
+
 		Move(wxPoint(pos.x - m_delta.x, pos.y - m_delta.y));
+
+		is_leftclick = false;  // left not click, left drag
 	}
 }
 
@@ -82,7 +88,11 @@ void ShapedFrame::OnLeftUp(wxMouseEvent& WXUNUSED(evt))
 	if (HasCapture())
 	{
 		ReleaseMouse();
+		
+		if (is_leftclick)
+			LeftClick();
 	}
+	is_leftclick = false;
 }
 
 void ShapedFrame::OnPaint(wxPaintEvent& WXUNUSED(evt))
@@ -94,6 +104,13 @@ void ShapedFrame::OnPaint(wxPaintEvent& WXUNUSED(evt))
 void ShapedFrame::DoubleClick()
 {
 	wxMessageDialog * dial = new wxMessageDialog(NULL, _T("ShapedFrame double click"), _T("ShapedFrame"), wxOK);
+
+	dial->ShowModal();
+}
+
+void ShapedFrame::LeftClick()
+{
+	wxMessageDialog * dial = new wxMessageDialog(NULL, _T("ShapedFrame left click"), _T("ShapedFrame"), wxOK);
 
 	dial->ShowModal();
 }
