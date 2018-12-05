@@ -95,6 +95,8 @@ void ShapedFrame::OnMouseMove(wxMouseEvent& evt)
 
 void ShapedFrame::OnExit(wxMouseEvent& WXUNUSED(evt))
 {
+	save_to_cfg();
+
 	Close();
 }
 
@@ -128,6 +130,10 @@ void ShapedFrame::LeftClick()
 	wxMessageDialog * dial = new wxMessageDialog(NULL, _T("ShapedFrame left click"), _T("ShapedFrame"), wxOK);
 
 	dial->ShowModal();
+}
+
+void ShapedFrame::save_to_cfg()
+{
 }
 
 void ShapedFrame::AdjustBmp()

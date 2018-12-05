@@ -25,6 +25,7 @@ public:
 
 	virtual void DoubleClick();
 	virtual void LeftClick();
+	virtual void save_to_cfg();
 
 	void AdjustBmp();
 

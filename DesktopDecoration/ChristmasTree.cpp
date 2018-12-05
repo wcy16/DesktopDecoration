@@ -3,7 +3,12 @@
 ChristmasTree::ChristmasTree(wxWindow* parent)
 	: AnimatedShapedFrame(parent, "res/Christmas.gif", wxColor(171, 171, 171))
 {
-
+	long x = 300, y = 300;
+	if (global_params.count(CHRISTMAS_TREE_POS_X))
+		global_params["CHRISTMAS_TREE_POS_X"].ToLong(&x);
+	if (global_params.count(CHRISTMAS_TREE_POS_Y))
+		global_params["CHRISTMAS_TREE_POS_Y"].ToLong(&y);
+	SetPosition(wxPoint(x, y));
 }
 
 void ChristmasTree::DoubleClick()
@@ -30,6 +35,13 @@ void ChristmasTree::LeftClick()
 		flake->Move(wxPoint(rand() % x, 0), wxPoint(rand() % 100 - 50, y / 70), 70,
 			[](MovingShapedFrame* f) { f->Close(); });
 	}
+}
+
+void ChristmasTree::save_to_cfg()
+{
+	wxPoint p = GetPosition();
+	global_params["CHRISTMAS_TREE_POS_X"] = wxString::Format(wxT("%i"), p.x);
+	global_params["CHRISTMAS_TREE_POS_Y"] = wxString::Format(wxT("%i"), p.y);
 }
 
 Snowflake::Snowflake(wxWindow * parent)
