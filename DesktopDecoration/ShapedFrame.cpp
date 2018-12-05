@@ -63,19 +63,34 @@ void ShapedFrame::OnLeftDown(wxMouseEvent& evt)
 	int dy = pos.y - origin.y;
 	m_delta = wxPoint(dx, dy);
 	is_leftclick = true;
+
+	m_pos = evt.GetPosition();
 }
 
 void ShapedFrame::OnMouseMove(wxMouseEvent& evt)
 {
-	wxPoint pt = evt.GetPosition();
-	if (evt.Dragging() && evt.LeftIsDown())
+	if (HasCapture() && evt.LeftIsDown())
 	{
-		wxPoint pos = ClientToScreen(pt);
+		wxPoint pt = evt.GetPosition();
+		if (pt != m_pos)   // dragged
+		{
+			wxPoint pos = ClientToScreen(pt);
+			Move(wxPoint(pos.x - m_delta.x, pos.y - m_delta.y));
 
-		Move(wxPoint(pos.x - m_delta.x, pos.y - m_delta.y));
-
-		is_leftclick = false;  // left not click, left drag
+			is_leftclick = false;  // left not click, left drag
+		}
 	}
+
+	// using evt.Dragging() may cause misjudge for animated shape frame
+	//wxPoint pt = evt.GetPosition();
+	//if (evt.Dragging() && evt.LeftIsDown())
+	//{
+	//	wxPoint pos = ClientToScreen(pt);
+
+	//	Move(wxPoint(pos.x - m_delta.x, pos.y - m_delta.y));
+
+	//	is_leftclick = false;  // left not click, left drag
+	//}
 }
 
 void ShapedFrame::OnExit(wxMouseEvent& WXUNUSED(evt))

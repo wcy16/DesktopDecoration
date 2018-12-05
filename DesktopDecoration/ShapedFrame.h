@@ -34,6 +34,7 @@ protected:
 
 private:
 	wxPoint  m_delta;
+	wxPoint m_pos;   // tmp pos for mouse event
 	bool is_leftclick;   // judge if left is clicked
 
 	// do modification to the bitmap
