@@ -35,7 +35,7 @@ public:
 	{
 		//parent->SetShape(wxRegion(GetAnimation().GetFrame(m_currentFrame), wxColor(171, 171, 171)));
 		//parent->SetShape(wxRegion(m_backingStore, wxColor(171, 171, 171)));
-		parent->SetShape(wxRegion(m_backingStore, wxColor(252, 254, 252)));
+		parent->SetShape(wxRegion(m_backingStore, bg));
 		wxAnimationCtrl::OnPaint(event);
 	}
 	void OnTimer(wxTimerEvent& event) {
