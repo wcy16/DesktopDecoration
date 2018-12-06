@@ -30,10 +30,10 @@ bool Decorate::OnInit()
 	auto t = new ChristmasTree(NULL);
 	t->Show();
 
-	wxFont f = wxFont(_T("0;-80;0;0;0;700;0;0;0;134;3;2;1;34;Î¢ÈíÑÅºÚ"));
+	/*wxFont f = wxFont(_T("0;-80;0;0;0;700;0;0;0;134;3;2;1;34;Î¢ÈíÑÅºÚ"));
 	auto t2 = new textFrame("version 1", NULL, &f);
 	t2->SetPosition(wxPoint(400, 620));
-	t2->Show();
+	t2->Show();*/
 	
 	//MovingShapedFrame* f = new MovingShapedFrame(NULL);
 	//f->Move(wxPoint(100, 100), wxPoint(10, 10), 10, true);

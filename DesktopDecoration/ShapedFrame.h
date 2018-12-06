@@ -20,11 +20,15 @@ public:
 	void OnLeftDown(wxMouseEvent& evt);
 	void OnLeftUp(wxMouseEvent& evt);
 	void OnMouseMove(wxMouseEvent& evt);
-	void OnExit(wxMouseEvent& evt);
+	void OnRightClick(wxMouseEvent& evt);
+
+	void OnExit(wxCloseEvent& evt);
 	void OnPaint(wxPaintEvent& evt);
 
 	virtual void DoubleClick();
 	virtual void LeftClick();
+	virtual void RightClick();
+
 	virtual void save_to_cfg();
 
 	void AdjustBmp();

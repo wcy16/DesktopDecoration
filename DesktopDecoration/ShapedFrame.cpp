@@ -22,6 +22,7 @@ ShapedFrame::ShapedFrame(wxString shape_path, wxWindow *parent, wxPoint pos)
 	)
 {
 	Connect(wxEVT_PAINT, wxPaintEventHandler(ShapedFrame::OnPaint));
+	Connect(wxEVT_CLOSE_WINDOW, wxCloseEventHandler(ShapedFrame::OnExit));
 	/*
 	Connect(wxEVT_LEFT_DCLICK, wxMouseEventHandler(ShapedFrame::OnDoubleClick));
 	Connect(wxEVT_LEFT_DOWN, wxMouseEventHandler(ShapedFrame::OnLeftDown));
@@ -36,7 +37,7 @@ ShapedFrame::ShapedFrame(wxString shape_path, wxWindow *parent, wxPoint pos)
 	AdjustBmp();
 	//m_bmp = wxBitmap(shapem);
 	SetSize(wxSize(m_bmp.GetWidth(), m_bmp.GetHeight()));
-	SetToolTip(wxT("ÓÒ¼ü¹Ø±Õ"));
+	//SetToolTip(wxT("ÓÒ¼ü¹Ø±Õ"));
 	SetWindowShape();
 	//Show();
 	//Center();
@@ -93,11 +94,16 @@ void ShapedFrame::OnMouseMove(wxMouseEvent& evt)
 	//}
 }
 
-void ShapedFrame::OnExit(wxMouseEvent& WXUNUSED(evt))
+void ShapedFrame::OnRightClick(wxMouseEvent & evt)
+{
+	RightClick();
+}
+
+void ShapedFrame::OnExit(wxCloseEvent& evt)
 {
 	save_to_cfg();
 
-	Close();
+	evt.Skip();
 }
 
 void ShapedFrame::OnLeftUp(wxMouseEvent& WXUNUSED(evt))
@@ -130,6 +136,11 @@ void ShapedFrame::LeftClick()
 	wxMessageDialog * dial = new wxMessageDialog(NULL, _T("ShapedFrame left click"), _T("ShapedFrame"), wxOK);
 
 	dial->ShowModal();
+}
+
+void ShapedFrame::RightClick()
+{
+	Close();
 }
 
 void ShapedFrame::save_to_cfg()
@@ -174,7 +185,7 @@ void ShapedFrame::MouseBind(wxEvtHandler * p)
 	p->Bind(wxEVT_LEFT_DOWN, &ShapedFrame::OnLeftDown, this);
 	p->Bind(wxEVT_LEFT_UP, &ShapedFrame::OnLeftUp, this);
 	p->Bind(wxEVT_MOTION, &ShapedFrame::OnMouseMove, this);
-	p->Bind(wxEVT_RIGHT_UP, &ShapedFrame::OnExit, this);
+	p->Bind(wxEVT_RIGHT_UP, &ShapedFrame::OnRightClick, this);
 }
 
 

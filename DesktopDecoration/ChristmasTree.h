@@ -10,16 +10,15 @@
 
 class ChristmasTree : public AnimatedShapedFrame
 {
+	wxMenu* menu;
 public:
 	ChristmasTree(wxWindow* parent);
 	virtual void DoubleClick();
 	virtual void LeftClick();
+	virtual void RightClick();
+
 	virtual void save_to_cfg();
-};
 
-class Snowflake : public MovingShapedFrame
-{
-public:
-	Snowflake(wxWindow* parent);
-
+	void OnClose(wxCommandEvent& event);
+	void OnAbout(wxCommandEvent& event);
 };
