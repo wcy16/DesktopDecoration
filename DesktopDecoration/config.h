@@ -5,9 +5,14 @@
 #include <map>
 
 enum {
-	EVENT_ID_START = 100,
-	MOVING_SHAPED_FRAME_TIMER,
-	ANIMATED_SHAPED_FRAME_TIMER,
+    EVENT_ID_START = 100,
+    MOVING_SHAPED_FRAME_TIMER,
+    ANIMATED_SHAPED_FRAME_TIMER,
+
+
+    // christmas tree
+    ID_CHRISTMAS_PLAY,
+    ID_CHRISTMAS_MUSIC,
 };
 
 extern std::map<wxString, wxString> global_params;
